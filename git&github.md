@@ -17,3 +17,11 @@
 > git branch -r "check branch list"
 > git checkout -t [remotename]/[branch name]
 > 참조 링크 https://cjh5414.github.io/get-git-remote-branch/
+
+## git pull strateg
+
+> 참조 링크 https://sanghye.tistory.com/43
+> git pull => git merge FETCH_HEAD 와 같이 동작한다.  
+> 기본모드 작동시 git merge commit 을 생성한다. => 작성하지 않은 merge 커밋 생성  
+> 참조 링크 https://backlog.com/git-tutorial/kr/stepup/stepup1_4.html
+> git 병합 규릭 non fast forward | fast forward
