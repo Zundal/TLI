@@ -16,3 +16,4 @@
 > git remote update  
 > git branch -r "check branch list"
 > git checkout -t [remotename]/[branch name]
+> 참조 링크 https://cjh5414.github.io/get-git-remote-branch/
