@@ -60,6 +60,50 @@
 
     쿼리 엔드포인트는 결과가 캐시되기 전에 응답 내용을 변경하고 캐시 무효화를 식별하기 위한 "태그"를 정의하며 캐시 엔트리가 추가 및 삭제될 때 추가 로직을 실행하기 위한 캐시 엔트리 라이프 사이클 콜백을 제공할 수도 있습니다.
 
+```
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query'
+import { Post } from './types'
+
+const api = createApi({
+  baseQuery: fetchBaseQuery({
+    baseUrl: '/',
+  }),
+  tagTypes: ['Post'],
+  endpoints: (build) => ({
+    updatePost: build.mutation<Post, Partial<Post> & Pick<Post, 'id'>>({
+      // note: an optional `queryFn` may be used in place of `query`
+      query: ({ id, ...patch }) => ({
+        url: `post/${id}`,
+        method: 'PATCH',
+        body: patch,
+      }),
+      // Pick out data and prevent nested properties in a hook or selector
+      transformResponse: (response: { data: Post }, meta, arg) => response.data,
+      invalidatesTags: ['Post'],
+      // onQueryStarted is useful for optimistic updates
+      // The 2nd parameter is the destructured `MutationLifecycleApi`
+      async onQueryStarted(
+        arg,
+        { dispatch, getState, queryFulfilled, requestId, extra, getCacheEntry }
+      ) {},
+      // The 2nd parameter is the destructured `MutationCacheLifecycleApi`
+      async onCacheEntryAdded(
+        arg,
+        {
+          dispatch,
+          getState,
+          extra,
+          requestId,
+          cacheEntryRemoved,
+          cacheDataLoaded,
+          getCacheEntry,
+        }
+      ) {},
+    }),
+  }),
+})
+```
+
 ---
 
 This is the most common use case for RTK Query.
