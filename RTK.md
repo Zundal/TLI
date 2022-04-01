@@ -6,15 +6,17 @@
 
      This is the most common use case for RTK Query.
 
+     이것은 RTK 쿼리의 가장 일반적인 사용 사례입니다.
+
     A query operation can be performed with any data fetching library of your choice,
+
+    원하는 데이터 가져오기 라이브러리를 사용하여 쿼리 작업을 수행할 수
 
     but the general recommendation is that you only use queries for requests that retrieve data.
 
+    있지만 일반적으로 데이터를 가져오는 요청에 대해서만 쿼리를 사용하는 것이 좋습니다.
+
     For anything that alters data on the server or will possibly invalidate the cache, you should use a Mutation.
-
-     이것은 RTK 쿼리의 가장 일반적인 사용 사례입니다.
-
-    원하는 데이터 가져오기 라이브러리를 사용하여 쿼리 작업을 수행할 수 있지만 일반적으로 데이터를 가져오는 요청에 대해서만 쿼리를 사용하는 것이 좋습니다.
 
     서버의 데이터를 변경하거나 캐시를 무효로 할 가능성이 있는 경우는, 변환을 사용할 필요가 있습니다.
 
@@ -22,13 +24,13 @@
 
     By default, RTK Query ships with fetchBaseQuery,
 
-    which is a lightweight fetch wrapper that automatically handles request headers and response parsing in a manner similar to common libraries like axios.
-
-    See Customizing Queries if fetchBaseQuery does not handle your requirements.
-
     디폴트로는 RTK Query에는 fetchBaseQuery가 부속되어 있습니다.
 
+    which is a lightweight fetch wrapper that automatically handles request headers and response parsing in a manner similar to common libraries like axios.
+
     이것은 Axios와 같은 일반적인 라이브러리와 같은 방법으로 요청 헤더 및 응답 해석을 자동으로 처리하는 경량 페치 래퍼입니다.
+
+    See Customizing Queries if fetchBaseQuery does not handle your requirements.
 
     fetchBaseQuery가 요구 사항을 처리하지 않는 경우 쿼리 사용자 지정을 참조하십시오.
 
