@@ -60,26 +60,26 @@
 
     쿼리 엔드포인트는 결과가 캐시되기 전에 응답 내용을 변경하고 캐시 무효화를 식별하기 위한 "태그"를 정의하며 캐시 엔트리가 추가 및 삭제될 때 추가 로직을 실행하기 위한 캐시 엔트리 라이프 사이클 콜백을 제공할 수도 있습니다.
 
-```javascript
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query'
-import { Post } from './types'
+```typescript
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
+import { Post } from "./types";
 
 const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: '/',
+    baseUrl: "/",
   }),
-  tagTypes: ['Post'],
+  tagTypes: ["Post"],
   endpoints: (build) => ({
-    updatePost: build.mutation<Post, Partial<Post> & Pick<Post, 'id'>>({
+    updatePost: build.mutation<Post, Partial<Post> & Pick<Post, "id">>({
       // note: an optional `queryFn` may be used in place of `query`
       query: ({ id, ...patch }) => ({
         url: `post/${id}`,
-        method: 'PATCH',
+        method: "PATCH",
         body: patch,
       }),
       // Pick out data and prevent nested properties in a hook or selector
       transformResponse: (response: { data: Post }, meta, arg) => response.data,
-      invalidatesTags: ['Post'],
+      invalidatesTags: ["Post"],
       // onQueryStarted is useful for optimistic updates
       // The 2nd parameter is the destructured `MutationLifecycleApi`
       async onQueryStarted(
@@ -101,7 +101,7 @@ const api = createApi({
       ) {},
     }),
   }),
-})
+});
 ```
 
 ---
